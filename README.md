@@ -28,3 +28,4 @@ npm run dev
 npm run build
 ```
 # NotesAppVue creating a notes app using vue3
+Going over directives
