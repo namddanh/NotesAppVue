@@ -2,6 +2,22 @@
   import { ref } from "vue";
 
   const showModal = ref(false);
+  const newNote = ref("");
+  const notes = ref([]);
+
+  const getRandomColor = () => "hsl(" + Math.random() * 360 + ", 100%, 75%)";
+
+  const addNote = () => {
+    notes.value.push({
+      id: Math.floor(Math.random() * 1000000),
+      text: newNote.value,
+      date: new Date(),
+      backgroundColor: getRandomColor(),
+    });
+
+    showModal.value = false;
+    newNote.value = "";
+  };
 </script>
 
 <template>
@@ -9,8 +25,14 @@
     <!-- NOTE v-if or v-show is good to use 👍 -->
     <div v-if="showModal" class="overlay">
       <div class="modal">
-        <textarea name="note" id="note" cols="30" rows="10"></textarea>
-        <button>Add Note</button>
+        <textarea
+          v-model="newNote"
+          name="note"
+          id="note"
+          cols="30"
+          rows="10"
+        ></textarea>
+        <button @click="addNote">Add Note</button>
         <button class="close" @click="showModal = false">Close</button>
       </div>
     </div>
