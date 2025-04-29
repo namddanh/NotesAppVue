@@ -43,19 +43,15 @@
         <button @click="showModal = true">+</button>
       </header>
       <div class="cards-container">
-        <div class="card">
+        <div
+          v-for="note in notes"
+          class="card"
+          :style="{ backgroundColor: note.backgroundColor }"
+        >
           <p class="main-text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus ipsa
-            dignissimos unde natus consequatur ut.
+            {{ note.text }}
           </p>
-          <p class="date">04/29/2025</p>
-        </div>
-        <div class="card">
-          <p class="main-text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus ipsa
-            dignissimos unde natus consequatur ut.
-          </p>
-          <p class="date">04/29/2025</p>
+          <p class="date">{{ note.date.toLocaleDateString("en-CA") }}</p>
         </div>
       </div>
     </div>
